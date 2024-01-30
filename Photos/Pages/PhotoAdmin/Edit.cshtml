@@ -1,0 +1,50 @@
+﻿@page
+@model Photos.Pages.PhotoAdmin.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Update Photo</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input type="hidden" asp-for="Photo.PhotoId" />
+            <input type="hidden" asp-for="Photo.PublishDate" />
+
+            <div class="mb-3">
+                Published: @Model.Photo.PublishDate
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Photo.Title" class="control-label"></label>
+                <input asp-for="Photo.Title" class="form-control" />
+                <span asp-validation-for="Photo.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Photo.Description" class="control-label"></label>
+                <input asp-for="Photo.Description" class="form-control" />
+                <span asp-validation-for="Photo.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Photo.FileName" class="control-label"></label>
+                <input asp-for="Photo.FileName" class="form-control" />
+                <span asp-validation-for="Photo.FileName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
