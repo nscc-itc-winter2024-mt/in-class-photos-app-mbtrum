@@ -15,7 +15,8 @@ namespace Photos.Pages.PhotoAdmin
 {
     public class CreateModel : PageModel
     {
-        private readonly Photos.Data.PhotosContext _context;
+        private readonly PhotosContext _context;
+        private readonly IHostEnvironment _environment;
 
         [BindProperty]
         public Photo Photo { get; set; } = default!;
@@ -24,7 +25,7 @@ namespace Photos.Pages.PhotoAdmin
         [DisplayName("Upload Photo")]
         public IFormFile FileUpload { get; set; }
 
-        public CreateModel(Photos.Data.PhotosContext context, IHostEnvironment environment)
+        public CreateModel(PhotosContext context, IHostEnvironment environment)
         {
             _context = context;
         }
@@ -56,7 +57,7 @@ namespace Photos.Pages.PhotoAdmin
 
             // Save the file
             string projectRootPath = _environment.ContentRootPath;
-            string fileSavePath = Path.Combine(projectRootPath, "wwwroot\\uploads", filename);
+            string fileSavePath = Path.Combine(projectRootPath, "wwwroot", "uploads", filename);
 
             // We use a "using" to ensure the filestream is disposed of when we're done with it
             using (FileStream fileStream = new FileStream(fileSavePath, FileMode.Create))
