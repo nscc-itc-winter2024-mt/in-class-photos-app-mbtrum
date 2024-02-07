@@ -7,13 +7,21 @@
 
 <h1>Update Photo</h1>
 
+@{
+    string imagePath = "/uploads/" + Model.Photo.FileName;
+}
+
+
 <div class="row">
     <div class="col-md-4">
+        <img src="@imagePath" class="img-fluid" />
+
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <input type="hidden" asp-for="Photo.PhotoId" />
             <input type="hidden" asp-for="Photo.PublishDate" />
+            <input type="hidden" asp-for="Photo.FileName" />
 
             <div class="mb-3">
                 Published: @Model.Photo.PublishDate
@@ -29,20 +37,13 @@
                 <input asp-for="Photo.Description" class="form-control" />
                 <span asp-validation-for="Photo.Description" class="text-danger"></span>
             </div>
+           
             <div class="mb-3">
-                <label asp-for="Photo.FileName" class="control-label"></label>
-                <input asp-for="Photo.FileName" class="form-control" />
-                <span asp-validation-for="Photo.FileName" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />&nbsp;&nbsp;&nbsp;
+                <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {

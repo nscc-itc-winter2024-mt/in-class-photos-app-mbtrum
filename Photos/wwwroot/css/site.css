@@ -23,6 +23,8 @@ body {
 
 /* Custom styles go here... */
 
+/* Home page column layout */
+
 .pin-container {
     width: 100%;
     margin: 20px auto;
@@ -87,4 +89,10 @@ body {
     width: 50px;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+/* Photo Admin styles */
+
+.row-photoadmin {
+    margin-top: 20px;
 }

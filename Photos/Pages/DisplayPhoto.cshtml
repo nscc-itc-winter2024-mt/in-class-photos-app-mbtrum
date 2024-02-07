@@ -1,6 +1,21 @@
 ﻿@page
 @model Photos.Pages.DisplayPhotoModel
+
 @{
+    string imagePath = "/uploads/" + Model.Photo.FileName;
 }
 
-<h1>Display Individual Photo</h1>
+<div class="d-flex justify-content-center">
+    <div class="w-50">
+        <img src="@imagePath" class="img-fluid" />
+    </div>    
+</div>
+
+<br />
+<br />
+<h3>@Model.Photo.Title</h3>
+<p>@Model.Photo.Description</p>
+<p>@Model.Photo.PublishDate.ToString("D")</p>
+<p><a asp-page="./Index" class="btn btn-secondary">Return</a></p>
+
+
