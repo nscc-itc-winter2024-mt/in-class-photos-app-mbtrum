@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Photos.Data;
 
@@ -10,9 +11,11 @@ using Photos.Data;
 namespace Photos.Migrations
 {
     [DbContext(typeof(PhotosContext))]
-    partial class PhotosContextModelSnapshot : ModelSnapshot
+    [Migration("20240208153306_CreateCategory")]
+    partial class CreateCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -38,9 +41,6 @@ namespace Photos.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -58,25 +58,7 @@ namespace Photos.Migrations
 
                     b.HasKey("PhotoId");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Photo");
-                });
-
-            modelBuilder.Entity("Photos.Models.Photo", b =>
-                {
-                    b.HasOne("Photos.Models.Category", "Category")
-                        .WithMany("Photos")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Photos.Models.Category", b =>
-                {
-                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

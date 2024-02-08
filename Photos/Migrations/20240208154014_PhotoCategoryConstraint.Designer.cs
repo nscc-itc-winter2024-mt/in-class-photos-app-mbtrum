@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Photos.Data;
 
@@ -10,9 +11,11 @@ using Photos.Data;
 namespace Photos.Migrations
 {
     [DbContext(typeof(PhotosContext))]
-    partial class PhotosContextModelSnapshot : ModelSnapshot
+    [Migration("20240208154014_PhotoCategoryConstraint")]
+    partial class PhotoCategoryConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");

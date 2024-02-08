@@ -9,5 +9,6 @@ namespace Photos.Models
         public string Description { get; set; } = string.Empty;
         public string FileName { get; set; } = string.Empty;
         public DateTime PublishDate { get; set; }
+        public Category Category { get; set; } = default!;
     }
 }
