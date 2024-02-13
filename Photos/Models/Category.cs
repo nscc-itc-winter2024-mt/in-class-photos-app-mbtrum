@@ -4,6 +4,6 @@
     {
         public int CategoryId { get; set; }
         public string Title { get; set; } = string.Empty;
-        public List<Photo> Photos { get; set; } = default!;
+        public List<Photo> Photos { get; set; } = new();
     }
 }

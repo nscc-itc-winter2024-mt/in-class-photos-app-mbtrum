@@ -25,10 +25,29 @@ namespace Photos.Pages.PhotoAdmin
         [DisplayName("Upload Photo")]
         public IFormFile FileUpload { get; set; }
 
+        // Category select options
+        public List<SelectListItem> CategoryOptions { get; set; } = new List<SelectListItem>();
+
         public CreateModel(PhotosContext context, IHostEnvironment environment)
         {
             _context = context;
             _environment = environment;
+
+            //
+            // Populate the category select options
+            //
+
+            // get all the categories in table
+            List<Category> categories = _context.Category.ToList();
+            
+            foreach (var category in categories)
+            {
+                CategoryOptions.Add(new SelectListItem
+                {
+                    Text = category.Title,
+                    Value= category.CategoryId.ToString()
+                });
+            }
         }
 
         public IActionResult OnGet()
@@ -39,13 +58,17 @@ namespace Photos.Pages.PhotoAdmin
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            // Set the category for the Photo object based on user's selection
+            Category selectCategory = _context.Category.Single(m => m.CategoryId == Photo.Category.CategoryId);
+            Photo.Category = selectCategory;
+
+            // Set the Publish Date for the photo
+            Photo.PublishDate = DateTime.Now;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            // Set the Publish Date for the photo
-            Photo.PublishDate = DateTime.Now;
 
             //
             // Upload file to server

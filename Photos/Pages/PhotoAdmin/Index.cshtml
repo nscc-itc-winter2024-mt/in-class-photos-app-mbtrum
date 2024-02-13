@@ -11,10 +11,7 @@
     <a asp-page="Create" class="btn btn-secondary">Create New</a>
 </p>
 
-
-
-
-@foreach (var item in Model.Photo) {
+@foreach (var item in Model.Photos) {
     <div class="row row-photoadmin">
 
         <div class="col-md-3">
@@ -23,7 +20,11 @@
 
         <div class="col-md-9">
             <h3>@item.Title</h3>
-            <p>@item.Description</p>
+            <p>
+                @item.Description 
+                <br />
+                @item.Category.Title
+            </p>
             <p>
                 <a asp-page="./Edit" asp-route-id="@item.PhotoId" class="btn btn-primary">Edit</a>&nbsp;&nbsp;&nbsp;
                 <a asp-page="./Delete" asp-route-id="@item.PhotoId" class="btn btn-danger">Delete</a>

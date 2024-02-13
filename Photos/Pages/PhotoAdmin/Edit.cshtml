@@ -32,10 +32,17 @@
                 <input asp-for="Photo.Title" class="form-control" />
                 <span asp-validation-for="Photo.Title" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="Photo.Description" class="control-label"></label>
                 <input asp-for="Photo.Description" class="form-control" />
                 <span asp-validation-for="Photo.Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Photo.Category.CategoryId" class="control-label"></label>
+                <select asp-for="Photo.Category.CategoryId" asp-items="Model.CategoryOptions" class="form-control"></select>
+                <span asp-validation-for="Photo.Category.CategoryId" class="text-danger"></span>
             </div>
            
             <div class="mb-3">

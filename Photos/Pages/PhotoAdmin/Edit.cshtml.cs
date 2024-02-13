@@ -15,13 +15,32 @@ namespace Photos.Pages.PhotoAdmin
     {
         private readonly Photos.Data.PhotosContext _context;
 
-        public EditModel(Photos.Data.PhotosContext context)
-        {
-            _context = context;
-        }
-
         [BindProperty]
         public Photo Photo { get; set; } = default!;
+
+        // Category select options
+        public List<SelectListItem> CategoryOptions { get; set; } = new List<SelectListItem>();
+
+        public EditModel(PhotosContext context)
+        {
+            _context = context;
+
+            //
+            // Populate the category select options
+            //
+
+            // get all the categories in table
+            List<Category> categories = _context.Category.ToList();
+
+            foreach (var category in categories)
+            {
+                CategoryOptions.Add(new SelectListItem
+                {
+                    Text = category.Title,
+                    Value = category.CategoryId.ToString()
+                });
+            }
+        }        
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -43,6 +62,10 @@ namespace Photos.Pages.PhotoAdmin
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            // Set the category for the Photo object based on user's selection
+            Category selectCategory = _context.Category.Single(m => m.CategoryId == Photo.Category.CategoryId);
+            Photo.Category = selectCategory;
+
             if (!ModelState.IsValid)
             {
                 return Page();
