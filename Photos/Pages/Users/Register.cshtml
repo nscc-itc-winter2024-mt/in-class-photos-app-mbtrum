@@ -2,3 +2,40 @@
 @model Photos.Pages.Users.RegisterModel
 @{
 }
+
+<h1>Join Resplash</h1>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="_User.FirstName" class="form-label"></label><br>
+                <input asp-for="_User.FirstName" class="form-control" />
+                <span asp-validation-for="_User.FirstName" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="_User.LastName" class="form-label"></label><br>
+                <input asp-for="_User.LastName" class="form-control" />
+                <span asp-validation-for="_User.LastName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="_User.UserName" class="form-label"></label><br>
+                <input asp-for="_User.UserName" class="form-control" />
+                <span asp-validation-for="_User.UserName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="_User.Password" class="form-label"></label><br>
+                <input asp-for="_User.Password" type="password" class="form-control" />
+                <span asp-validation-for="_User.Password" class="text-danger"></span>
+            </div>
+
+            <br />
+            <input type="submit" value="Join" class="btn btn-primary" />
+        </form>
+
+    </div>
+</div>

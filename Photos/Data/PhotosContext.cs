@@ -16,5 +16,6 @@ namespace Photos.Data
 
         public DbSet<Photos.Models.Photo> Photo { get; set; } = default!;
         public DbSet<Photos.Models.Category> Category { get; set; } = default!;
+        public DbSet<Photos.Models.User> User { get; set; } = default!;
     }
 }
