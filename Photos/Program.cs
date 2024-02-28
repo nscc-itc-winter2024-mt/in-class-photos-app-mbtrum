@@ -20,7 +20,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.SlidingExpiration = true; // reset the clock
         options.LoginPath = "/Users/Login";
         options.LogoutPath = "/Users/Logout";
-        options.AccessDeniedPath = "/Error/";
+        options.AccessDeniedPath = "/AccessDenied/";
     });
 
 

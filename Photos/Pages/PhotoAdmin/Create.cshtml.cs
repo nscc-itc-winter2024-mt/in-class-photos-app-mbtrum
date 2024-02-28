@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using Photos.Models;
 
 namespace Photos.Pages.PhotoAdmin
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly PhotosContext _context;

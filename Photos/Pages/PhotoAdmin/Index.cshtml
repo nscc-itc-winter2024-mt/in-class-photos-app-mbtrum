@@ -3,13 +3,17 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    string title = Model.Photos.First().User.FirstName + "'s Photos";
 }
 
-<h1>My Photos</h1>
+<h1>@title</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-secondary">Create New</a>
+    <a asp-page="Create" class="btn btn-secondary">Add New</a>
 </p>
+
+<br />
 
 @foreach (var item in Model.Photos) {
     <div class="row row-photoadmin">

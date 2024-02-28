@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Photos.Data;
 using Photos.Models;
+using System.Security.Claims;
 
 namespace Photos.Pages.Users
 {
@@ -46,7 +49,27 @@ namespace Photos.Pages.Users
 
             if(validPassword)
             {
-                // to-do: initialize cookie auth session
+                //
+                // Initialize user session
+                //
+
+                // Create Claims, 1 custom one
+                List<Claim> claims = new List<Claim>
+                { 
+                    new Claim(ClaimTypes.Name, userDb.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, "Member"),
+                    new Claim("FullName", userDb.FirstName + " " + userDb.LastName)
+                };
+
+                // Create Claims Identity
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                // Sign in user
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    new AuthenticationProperties());
+
 
                 return RedirectToPage("/PhotoAdmin/Index");
             }

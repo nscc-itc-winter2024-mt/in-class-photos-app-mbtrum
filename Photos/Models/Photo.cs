@@ -10,5 +10,6 @@ namespace Photos.Models
         public string FileName { get; set; } = string.Empty;
         public DateTime PublishDate { get; set; }
         public Category Category { get; set; } = new();
+        public User User { get; set; } = new();
     }
 }
